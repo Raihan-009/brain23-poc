@@ -17,6 +17,8 @@ import {
   View,
 } from 'react-native';
 import LoanInfoCard from './src/component/loaninfo/ShortLoan';
+import PayDayLoan from './src/component/loaninfo/PayDayLoan';
+import StudyLoan from './src/component/loaninfo/StudyLoan';
 
 import {
   Colors,
@@ -66,6 +68,8 @@ function App(): React.JSX.Element {
   return (
     <SafeAreaView style={backgroundStyle}>
       <LoanInfoCard />
+      <StudyLoan />
+      <PayDayLoan />
     </SafeAreaView>
   );
 }

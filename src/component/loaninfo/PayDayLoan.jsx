@@ -31,11 +31,11 @@ const footerData = [
 
 const VerticalSeparator = () => <View style={styles.verticalSeparator} />;
 
-const LoanInfoCard = () => {
+const PayDayLoan = () => {
   return (
     <View style={styles.card}>
 
-      <LoanHeader title={'Short-term Loan'} status={'Active'} />
+      <LoanHeader title={'Purposeful Pay-Day Loan'} status={'Active'} />
       
       <View style={styles.infoContainer}>
         {infoData.map((item, index) => (
@@ -93,4 +93,4 @@ const styles = StyleSheet.create({
   
 });
 
-export default LoanInfoCard;
+export default PayDayLoan;
