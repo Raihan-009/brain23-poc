@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 
-
 const ChevronIcon = ({stroke}) => (
     <Svg width="4" height="6" viewBox="0 0 4 6" fill="none">
         <Path
@@ -13,23 +12,56 @@ const ChevronIcon = ({stroke}) => (
         strokeLinejoin="round"
         />
     </Svg>
-    );
+);
 
-const PayNowButton = () => (
-    <TouchableOpacity style={styles.payNowButton}>
-        <Text style={styles.payNowText}>Pay Now <ChevronIcon stroke={'black'} /></Text>
+const PayNowButton = () => {
+  console.log('PayNowButton rendered'); // Log when the button is rendered
+
+  const handlePress = () => {
+    console.log('PayNowButton pressed'); // Log when the button is pressed
+  };
+
+  return (
+    <TouchableOpacity style={styles.payNowButton} onPress={handlePress}>
+      <Text style={styles.payNowText}>Pay Now <ChevronIcon stroke={'black'} /></Text>
     </TouchableOpacity>
-    );
+  );
+};
 
-const InfoRow = ({ label, value }) => {
+const InfoRow = ({ label, value, isPayButton }) => {
   return (
     <View style={styles.infoRow}>
       <Text style={styles.infoLabel}>{label}</Text>
-      {label === "Re-Payment:" ? (
-      <PayNowButton />
-    ) : (
-      <Text style={styles.infoValue}>{value}</Text>
-    )}
+      {isPayButton ? (
+        <PayNowButton />
+      ) : (
+        <Text style={styles.infoValue}>{value}</Text>
+      )}
+    </View>
+  );
+};
+
+const InfoRowContainer = ({ data }) => {
+  const {
+    loanStatus,
+    nextRepaymentDate,
+    monthlyRepayment,
+    loanTenure
+  } = data;
+
+  const showNextRepaymentAndRePayment = (loanStatus === 4);
+  console.log(showNextRepaymentAndRePayment)
+
+  return (
+    <View>
+      {showNextRepaymentAndRePayment && (
+        <InfoRow label="Next Repayment Date:" value={nextRepaymentDate} />
+      )}
+      <InfoRow label="Monthly Repayment:" value={`BDT ${monthlyRepayment}`} />
+      <InfoRow label="Loan Tenure:" value={`${loanTenure}`} />
+      {showNextRepaymentAndRePayment && (
+        <InfoRow label="Re-Payment:" value="" isPayButton={true} />
+      )}
     </View>
   );
 };
@@ -41,40 +73,34 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 15,
         backgroundColor: '#F7FCFE',
-        marginBottom:2,
+        marginBottom: 2,
         borderRadius: 8,
-      },
-      infoLabel: {
+    },
+    infoLabel: {
         fontSize: 14,
         color: '#7F8790',
         flex: 1,
-      },
-      infoValue: {
+    },
+    infoValue: {
         fontSize: 14,
-        // fontWeight: 'bold',
         color: '#090909',
         flex: 1,
         textAlign: 'right',
-      },
-      payNowButton: {
+    },
+    payNowButton: {
         backgroundColor: '#F2C94C',
         borderRadius: 25,
         alignItems: 'center',
         justifyContent: 'center',
         height: 20,
-        width : 70,
-      },
-      payNowText: {
+        width: 70,
+    },
+    payNowText: {
         color: '#000',
         fontSize: 10,
         fontWeight: 'bold',
         marginRight: 2,
-      },
-      payNowArrow: {
-        color: '#333',
-        fontSize: 20,
-        fontWeight: 'bold',
-      },
+    },
 });
 
-export default InfoRow;
+export default InfoRowContainer;
