@@ -88,7 +88,6 @@ const styles = StyleSheet.create({
   icon: {
     width: 42,
     height: 42,
-    borderRadius: 20,
   },
   titleContainer: {
     flex: 1,

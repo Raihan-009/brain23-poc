@@ -89,11 +89,11 @@ const styles = StyleSheet.create({
     },
     payNowButton: {
         backgroundColor: '#F2C94C',
-        borderRadius: 25,
+        borderRadius: 12,
         alignItems: 'center',
         justifyContent: 'center',
-        height: 20,
-        width: 70,
+        paddingHorizontal: 23,
+        paddingVertical: 4,
     },
     payNowText: {
         color: '#000',

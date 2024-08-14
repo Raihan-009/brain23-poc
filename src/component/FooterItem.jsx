@@ -1,6 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 
+import InterestLogo from '../../assets/interest.png';
+import AmountLogo from '../../assets/amount.png';
+import LoanLogo from '../../assets/loan.png';
+
 const FooterItem = ({ icon, label, value }) => {
   return (
     <View style={styles.footerItem}>
@@ -24,19 +28,19 @@ const Footer = ({data}) => {
   return (
     <View style={styles.footer}>
       <FooterItem
-        icon={require('/Users/ryuzaki/workspace/brainstation/AwesomeProject/public/images/interest.png')}
+        icon={InterestLogo}
         label="Interest Rate"
         value={`${interestRate}%`}
       />
       <VerticalSeparator />
       <FooterItem
-        icon={require('/Users/ryuzaki/workspace/brainstation/AwesomeProject/public/images/loan.png')}
+        icon={LoanLogo}
         label="Loan Tenure"
         value={`${loanTenure} Months`}
       />
       <VerticalSeparator />
       <FooterItem
-        icon={require('/Users/ryuzaki/workspace/brainstation/AwesomeProject/public/images/amount.png')}
+        icon={AmountLogo}
         label="Amount"
         value={`BDT ${principalAmount}`}
       />
