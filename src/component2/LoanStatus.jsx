@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, Text, StyleSheet } from 'react-native';
+import { View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 import Svg, { Circle } from 'react-native-svg';
 import statebtn from '../../assets/status-btn.png'
@@ -30,7 +30,12 @@ const CustomCircle = ({ loanStatus, position }) => {
 };
 
 const MultiRowIconTextComponent = ({ rows, loanStatus }) => {
+  const handleButtonPress = () => {
+    console.log('Button pressed');
+  };
+
   return (
+    <View>
     <View style={styles.card}>
       <View style={styles.bgcontainer}>
         <Image source={statebtn} style={styles.bgImage} />
@@ -58,6 +63,17 @@ const MultiRowIconTextComponent = ({ rows, loanStatus }) => {
         <View style={styles.rightSpace} />
       </View>
     </View>
+    <TouchableOpacity
+        style={[
+          styles.button,
+          { opacity: loanStatus === 1 ? 1 : 0.5 }
+        ]}
+        onPress={handleButtonPress}
+        disabled={loanStatus !== 1}
+      >
+        <Text style={styles.buttonText}>Choose Disbursement Method</Text>
+      </TouchableOpacity>
+      </View>
   );
 };
 
@@ -79,7 +95,7 @@ const styles = StyleSheet.create({
     },
   
     bgcontainer: {
-      borderWidth:1,
+      // borderWidth:1,
       position: 'relative',
       top: 20,
       left: 0,
@@ -105,7 +121,7 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 3,
-    borderWidth: 1,
+    // borderWidth: 1,
     borderColor: 'red',
     position: 'relative',
   },
@@ -163,7 +179,19 @@ const styles = StyleSheet.create({
   },
   rightSpace: {
     flex: 1,
-    borderWidth: 1,
+    // borderWidth: 1,
+  },
+  button: {
+    backgroundColor: '#F9B717',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 14,
+    marginTop: 20,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#4A4A4A',
+    fontSize: 16,
   },
 });
 

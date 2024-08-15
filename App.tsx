@@ -53,7 +53,7 @@ function App(): React.JSX.Element {
     <SafeAreaView style={styles.container}>
       {/* < MyLoan /> */}
       {/* <Greeting /> */}
-      <MultiRowIconTextComponent rows={rows} loanStatus={1}/>
+      <MultiRowIconTextComponent rows={rows} loanStatus={4}/>
     </SafeAreaView>
   );
 }
