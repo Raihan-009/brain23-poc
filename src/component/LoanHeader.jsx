@@ -8,7 +8,7 @@ const StatusBadge = ({ loanStatus }) => {
   let backgroundColor;
 
   if (loanStatus === 4) {
-    status = 'Disbursed';
+    status = 'Active';
     backgroundColor = '#A2D729';
   } else if (loanStatus === 5) {
     status = 'Closed';
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   iconContainer: {
-    borderRadius: 20,
+    borderRadius: 13,
     backgroundColor: '#F2F2F2',
     justifyContent: 'center',
     alignItems: 'center',
@@ -95,20 +95,20 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#333',
+    color: '#22336B',
     flexWrap: 'wrap',
   },
   bankName: {
-    fontSize: 14,
-    color: '#666',
+    fontSize: 10,
+    color: '#1E439B',
   },
   rightSection: {
     alignItems: 'flex-end',
   },
   statusText: {
-    fontSize: 14,
-    color: '#666',
-    marginBottom: 4,
+    fontSize: 10,
+    color: '#7F8790',
+    marginBottom: 5,
   },
   statusBadge: {
     borderRadius: 17,

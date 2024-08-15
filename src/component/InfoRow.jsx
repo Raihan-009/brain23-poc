@@ -58,7 +58,7 @@ const InfoRowContainer = ({ data }) => {
         <InfoRow label="Next Repayment Date:" value={nextRepaymentDate} />
       )}
       <InfoRow label="Monthly Repayment:" value={`BDT ${monthlyRepayment}`} />
-      <InfoRow label="Loan Tenure:" value={`${loanTenure}`} />
+      <InfoRow label="No of Payments:" value={`${loanTenure}`} />
       {showNextRepaymentAndRePayment && (
         <InfoRow label="Re-Payment:" value="" isPayButton={true} />
       )}
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     infoValue: {
-        fontSize: 14,
+        fontSize: 10,
         color: '#090909',
         flex: 1,
         textAlign: 'right',
