@@ -17,6 +17,7 @@ import {
   View,
 } from 'react-native';
 import MyLoan from './src/component/loaninfo/MyLoan';
+import MultiRowIconTextComponent from './src/component2/LoanStatus';
 
 import {
   Colors,
@@ -30,50 +31,16 @@ type SectionProps = PropsWithChildren<{
   title: string;
 }>;
 
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
 
-const info = [
-  {
-      "applicationRefNo": "4324323",
-      "loanProductCode": "LP01",
-      "applicationDate": "2024-08-14T09:45:59.466346949",
-      "applicantName": "Dummy",
-      "applicantMobileNum": "01789832732",
-      "loanStatus": 4,
-      "principalAmount": 12000,
-      "loanTenure": 6,
-      "interestRate": 0.5,
-      "nextRepaymentDate": "08-08-2024",
-      "monthlyRepayment": 2500,
-      "purposeIconUrl": "http://apon-mart-customer-gateway-service-service.devbsfintech23.com/api/v1/file-server/public/X_-czHZcqRpW1CKCxEPXc5829OhMEGeBiT50fUcbUYyN7-cpqNKYgUx4pbJA_tu-965PX9n43X6nTR15iMzGMAJ1Ptrpm4tBxY89P4mpECEt3Y9DcK4YJGCUAcoJa-DJ38esct1A3IBFG71ZE5_W-A",
-      "productName": "Payday Loan",
-      "bankName": "City Bank"
-  }
+
+const rows = [
+  { icon: require('./assets/submission.png'), text: 'Application Submission' },
+  { icon: require('./assets/credit.png'), text: 'Credit Evaluation' },
+  { icon: require('./assets/loan.png'), text: 'Loan Approval Processing' },
+  { icon: require('./assets/approved.png'), text: 'Loan Approved' },
+  { icon: require('./assets/disbursement.png'), text: 'Loan Disbursement' },
 ];
+
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -83,13 +50,18 @@ function App(): React.JSX.Element {
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      < MyLoan />
+    <SafeAreaView style={styles.container}>
+      {/* < MyLoan /> */}
+      {/* <Greeting /> */}
+      <MultiRowIconTextComponent rows={rows} />
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  container : {
+    paddingHorizontal: 20
+  },
   sectionContainer: {
     marginTop: 32,
     paddingHorizontal: 24,
