@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
 
 import Svg, { Circle } from 'react-native-svg';
-
+import statebtn from '../../assets/status-btn.png'
 
 const CustomCircle = ({ loanStatus, position }) => {
   const blueColor = '#5BC0EB';
@@ -32,6 +32,10 @@ const CustomCircle = ({ loanStatus, position }) => {
 const MultiRowIconTextComponent = ({ rows, loanStatus }) => {
   return (
     <View style={styles.card}>
+      <View style={styles.bgcontainer}>
+        <Image source={statebtn} style={styles.bgImage} />
+        <Text style={styles.bgText}>Loan Stage</Text>
+      </View>
       <View style={styles.container}>
         <View style={styles.content}>
           {rows.map((row, index) => (
@@ -58,24 +62,46 @@ const MultiRowIconTextComponent = ({ rows, loanStatus }) => {
 };
 
 const styles = StyleSheet.create({
-    card: {
-        borderRadius: 12,
-        padding: 8,
-        backgroundColor: 'white',
-        shadowColor: "#000",
-        shadowOffset: {
-          width: 0,
-          height: 1,
-        },
-        shadowOpacity: 0.18,
-        shadowRadius: 1.00,
-        elevation: 1,
-        borderWidth: 1,
-        borderColor: '#f0f0f0',
+  card: {
+      borderRadius: 12,
+      padding: 8,
+      backgroundColor: 'white',
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 1,
       },
+      shadowOpacity: 0.18,
+      shadowRadius: 1.00,
+      elevation: 1,
+      borderWidth: 1,
+      borderColor: '#f0f0f0',
+    },
+  
+    bgcontainer: {
+      borderWidth:1,
+      position: 'relative',
+      top: 20,
+      left: 0,
+      right: 0,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    bgImage: {
+      resizeMode: 'cover',
+    },
+    bgText: {
+      position: 'absolute',
+      top: 10,
+      fontSize: 12,
+      fontWeight: 'bold',
+      color: 'white', 
+      textAlign: 'center',
+    },
   container: {
     flexDirection: 'row',
     backgroundColor: '#fff',
+    marginTop: 35,
   },
   content: {
     flex: 3,
