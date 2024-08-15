@@ -3,41 +3,56 @@ import { View, Image, Text, StyleSheet } from 'react-native';
 
 import Svg, { Circle } from 'react-native-svg';
 
-const CustomCircle = () => (
-  <Svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-    <Circle opacity="0.2" cx="10.704" cy="11.0175" r="10.6835" fill="#5BC0EB"/>
-    <Circle opacity="0.3" cx="10.7039" cy="11.0176" r="7.76075" fill="#5BC0EB"/>
-    <Circle cx="10.7039" cy="11.0171" r="5.15675" fill="#5BC0EB"/>
-  </Svg>
-);
 
+const CustomCircle = ({ loanStatus, position }) => {
+  const blueColor = '#5BC0EB';
+  const defaultColor = '#c4c7cc';
 
+  let fillColor;
 
-const MultiRowIconTextComponent = ({ rows }) => {
+  if (loanStatus === 4) {
+    fillColor = blueColor;
+  } else if (position <= 2) {
+    fillColor = blueColor;
+  } else if (loanStatus === 1 && position === 3) {
+    fillColor = blueColor;
+  } else {
+    fillColor = defaultColor;
+  }
+
+  return (
+    <Svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+      <Circle opacity="0.2" cx="10.704" cy="11.0175" r="10.6835" fill={fillColor}/>
+      <Circle opacity="0.3" cx="10.7039" cy="11.0176" r="7.76075" fill={fillColor}/>
+      <Circle cx="10.7039" cy="11.0171" r="5.15675" fill={fillColor}/>
+    </Svg>
+  );
+};
+
+const MultiRowIconTextComponent = ({ rows, loanStatus }) => {
   return (
     <View style={styles.card}>
-    <View style={styles.container}>
-      <View style={styles.content}>
-        {rows.map((row, index) => (
-          <View key={index} style={styles.row}>
-            <View style={styles.iconContainer}>
-              <Image source={row.icon} style={styles.icon} />
-              <View style={styles.circle}>
-              <CustomCircle />
+      <View style={styles.container}>
+        <View style={styles.content}>
+          {rows.map((row, index) => (
+            <View key={index} style={styles.row}>
+              <View style={styles.iconContainer}>
+                <Image source={row.icon} style={styles.icon} />
+                <View style={styles.circle}>
+                  <CustomCircle loanStatus={loanStatus} position={index} />
+                </View>
+              </View>
+              <View style={styles.textContainer}>
+                <Text style={styles.text}>{row.text}</Text>
               </View>
             </View>
-            <View style={styles.textContainer}>
-            <Text style={styles.text}>{row.text}</Text>
-            </View>
-            
+          ))}
+          <View style={styles.lineContainer}>
+            <View style={styles.dottedLine} />
           </View>
-        ))}
-        <View style={styles.lineContainer}>
-          <View style={styles.dottedLine} />
         </View>
+        <View style={styles.rightSpace} />
       </View>
-      <View style={styles.rightSpace} />
-    </View>
     </View>
   );
 };
@@ -71,7 +86,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 10,
+    paddingVertical: 25,
   },
   iconContainer: {
     width: 50,
@@ -99,6 +114,7 @@ const styles = StyleSheet.create({
     width: 1,
     alignItems: 'center',
     paddingHorizontal: 20,
+    zIndex: -10,
   },
   dottedLine: {
     flex: 1,
